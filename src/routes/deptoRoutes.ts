@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { createDepartamento, getDepartamentos, getDepartamentoById, updateDepartamento, deleteDepartamento } from "../controllers/DeptoController";
+import { createDepto, getDeptos, getDeptoById, updateDepto, deleteDepto } from "../controllers/DeptoController";
 
 const router = Router();
 
-router.post("/", createDepartamento);
-router.get("/", getDepartamentos);
-router.get("/:id", getDepartamentoById);
-router.put("/:id", updateDepartamento);
-router.delete("/:id", deleteDepartamento);
+router.post("/", createDepto);
+router.get("/", getDeptos);
+router.get("/:id", getDeptoById);
+router.put("/:id", updateDepto);
+router.delete("/:id", deleteDepto);
 
 export { router as deptoRoutes };

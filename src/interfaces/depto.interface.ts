@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 
-export interface IDepartamento {
+export interface IDepto {
     _id?: ObjectId;
     nombredepto: string;
     codigoarea?: string;

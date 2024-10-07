@@ -1,33 +1,33 @@
 import { Request, Response, NextFunction } from "express";
-import DepartamentoModel from "../models/DeptoModel";
+import DeptoModel from "../models/DeptoModel";
 import { Types } from "mongoose";
 
 // Crear un nuevo departamento
-export const createDepartamento = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const createDepto = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const { nombredepto, codigoarea, paisId } = req.body;
 
-    const nuevoDepartamento = new DepartamentoModel({ nombredepto, codigoarea, paisId });
+    const nuevoDepto = new DeptoModel({ nombredepto, codigoarea, paisId });
 
     try {
-        await nuevoDepartamento.save();
-        res.status(201).json(nuevoDepartamento);
+        await nuevoDepto.save();
+        res.status(201).json(nuevoDepto);
     } catch (error: unknown) {
         next(new Error("Error al crear el departamento: " + (error instanceof Error ? error.message : "Error desconocido")));
     }
 };
 
 // Obtener todos los departamentos
-export const getDepartamentos = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const getDeptos = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const departamentos = await DepartamentoModel.find().populate('paisId');
-        res.status(200).json(departamentos);
+        const deptos = await DeptoModel.find().populate('paisId');
+        res.status(200).json(deptos);
     } catch (error: unknown) {
         next(new Error("Error al obtener los departamentos: " + (error instanceof Error ? error.message : "Error desconocido")));
     }
 };
 
 // Obtener un departamento por su ID
-export const getDepartamentoById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const getDeptoById = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const { id } = req.params;
 
     if (!Types.ObjectId.isValid(id)) {
@@ -36,10 +36,10 @@ export const getDepartamentoById = async (req: Request, res: Response, next: Nex
     }
 
     try {
-        const departamento = await DepartamentoModel.findById(id).populate('paisId');
+        const departamento = await DeptoModel.findById(id).populate('paisId');
 
         if (!departamento) {
-            res.status(404).json({ message: "Departamento no encontrado" });
+            res.status(404).json({ message: "Depto no encontrado" });
             return;
         }
 
@@ -50,7 +50,7 @@ export const getDepartamentoById = async (req: Request, res: Response, next: Nex
 };
 
 // Actualizar un departamento
-export const updateDepartamento = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const updateDepto = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const { id } = req.params;
     const { nombredepto, codigoarea, paisId } = req.body;
 
@@ -60,7 +60,7 @@ export const updateDepartamento = async (req: Request, res: Response, next: Next
     }
 
     try {
-        const departamentoActualizado = await DepartamentoModel.findByIdAndUpdate(
+        const departamentoActualizado = await DeptoModel.findByIdAndUpdate(
             id,
             { nombredepto, codigoarea, paisId },
             { new: true }
@@ -78,7 +78,7 @@ export const updateDepartamento = async (req: Request, res: Response, next: Next
 };
 
 // Eliminar un departamento
-export const deleteDepartamento = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const deleteDepto = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     const { id } = req.params;
 
     if (!Types.ObjectId.isValid(id)) {
@@ -87,7 +87,7 @@ export const deleteDepartamento = async (req: Request, res: Response, next: Next
     }
 
     try {
-        const departamentoEliminado = await DepartamentoModel.findByIdAndDelete(id);
+        const departamentoEliminado = await DeptoModel.findByIdAndDelete(id);
 
         if (!departamentoEliminado) {
             res.status(404).json({ message: "Departamento no encontrado" });

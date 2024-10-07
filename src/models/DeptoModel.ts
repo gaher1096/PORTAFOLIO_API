@@ -1,7 +1,7 @@
 import { Schema, model, Document } from "mongoose";
-import { IDepartamento } from "../interfaces/depto.interface";
+import { IDepto } from "../interfaces/depto.interface";
 
-const DepartamentoSchema = new Schema<IDepartamento>(
+const DeptoSchema = new Schema<IDepto>(
     {
         nombredepto: { type: String, required: true },
         codigoarea: { type: String, default: null },
@@ -12,6 +12,6 @@ const DepartamentoSchema = new Schema<IDepartamento>(
     }
 );
 
-const DepartamentoModel = model<IDepartamento>("Departamento", DepartamentoSchema);
+const DeptoModel = model<IDepto>("Depto", DeptoSchema, "Depto");
 
-export default DepartamentoModel;
+export default DeptoModel;
