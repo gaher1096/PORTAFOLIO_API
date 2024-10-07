@@ -12,6 +12,6 @@ const DeptoSchema = new Schema<IDepto>(
     }
 );
 
-const DeptoModel = model<IDepto>("Depto", DeptoSchema, "Depto");
+const DeptoModel = model<IDepto>("Depto", DeptoSchema, "depto");
 
 export default DeptoModel;

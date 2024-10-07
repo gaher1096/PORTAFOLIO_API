@@ -19,6 +19,6 @@ const PaisSchema = new Schema<IPais>(
     }
 );
 
-const PaisModel = model<IPais>("Pais", PaisSchema, "Pais");
+const PaisModel = model<IPais>("Pais", PaisSchema, "pais");
 
 export default PaisModel;
