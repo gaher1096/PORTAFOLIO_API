@@ -1,5 +1,3 @@
-// src/controllers/DeptoController.ts
-
 import { Request, Response, NextFunction } from "express";
 import * as DeptoService from "../services/DeptoService";
 
